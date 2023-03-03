@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="2ad30387c0c44525baf6a14e3bb51496" Name="Diagram1">
+        <EntityTypeShape EntityType="p_praktika_SmolinModel.Results" Width="1.5" PointX="3" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="p_praktika_SmolinModel.Service" Width="1.5" PointX="0.75" PointY="1.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="p_praktika_SmolinModel.sysdiagrams" Width="1.5" PointX="2.75" PointY="4.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="p_praktika_SmolinModel.Users" Width="1.5" PointX="0.75" PointY="5.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="p_praktika_SmolinModel.Workers" Width="1.5" PointX="0.75" PointY="8.625" IsExpanded="true" />
+        <AssociationConnector Association="p_praktika_SmolinModel.FK__Results__id_lab__3E52440B" ManuallyRouted="false" />
+        <AssociationConnector Association="p_praktika_SmolinModel.FK__Results__id_serv__3F466844" ManuallyRouted="false" />
+        <AssociationConnector Association="p_praktika_SmolinModel.FK__Results__id_user__3D5E1FD2" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>
