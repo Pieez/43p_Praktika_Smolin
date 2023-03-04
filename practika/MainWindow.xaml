@@ -196,9 +196,7 @@
 
                 </customcontrols:UserControl1>
 
-                <CheckBox Name="revealModeCheckBox" Content="Show password"
-              IsChecked="False"
-              Checked="CheckBox_Changed" Unchecked="CheckBox_Changed"/>
+                
                 
 
                 <TextBlock Text="{Binding ErrorMessage}"

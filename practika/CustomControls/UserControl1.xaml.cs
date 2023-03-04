@@ -13,6 +13,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using System.Windows.Controls;
 
 namespace practika.CustomControls
 {
@@ -38,6 +39,20 @@ namespace practika.CustomControls
         private void OnPasswordChanged(object sender, RoutedEventArgs e)
         {
             Password = txtPasswords.SecurePassword;
+        }
+
+        private void showPasswordToggleButton_Checked(object sender, RoutedEventArgs e)
+        {
+            txtPasswords.Visibility = Visibility.Collapsed;
+            visibleTextBox.Visibility = Visibility.Visible;
+            visibleTextBox.Text = txtPasswords.Password;
+        }
+
+        private void showPasswordToggleButton_Unchecked(object sender, RoutedEventArgs e)
+        {
+            txtPasswords.Visibility = Visibility.Visible;
+            visibleTextBox.Visibility = Visibility.Collapsed;
+            txtPasswords.Password = visibleTextBox.Text;
         }
 
     }

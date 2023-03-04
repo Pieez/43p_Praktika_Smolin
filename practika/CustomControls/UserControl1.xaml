@@ -3,10 +3,35 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:controls="clr-namespace:System.Windows.Controls;assembly=PresentationFramework"
              xmlns:local="clr-namespace:practika.CustomControls"
              mc:Ignorable="d" 
              d:DesignHeight="30" d:DesignWidth="800">
-    <PasswordBox x:Name="txtPasswords"
+
+    <UserControl.Resources>
+        <Style x:Key="OnOffToggleImageStyle" TargetType="ToggleButton">
+            <Style.Triggers>
+                <Trigger Property="IsChecked" Value="True">
+                    <Setter Property="Content">
+                        <Setter.Value>
+                            <Image Source="Image/EyeOpened.png" />
+                        </Setter.Value>
+                    </Setter>
+                </Trigger>
+                <Trigger Property="IsChecked" Value="False">
+                    <Setter Property="Content">
+                        <Setter.Value>
+                            <Image Source="Image/EyeClosed.png" />
+                        </Setter.Value>
+                    </Setter>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+    </UserControl.Resources>
+
+
+    <Grid>
+        <PasswordBox x:Name="txtPasswords"
                  FontSize="13"
                  FontWeight="Medium"
                  FontFamily="Montserrat"
@@ -15,12 +40,29 @@
                  CaretBrush="#FF00C0FF"
                  BorderBrush="DarkBlue"
                  BorderThickness="0,0,0,1"
-                 VerticalContentAlignment="Center"
-                 
-                 
-                 >
-        
-        
+                 VerticalContentAlignment="Center">
+            
     </PasswordBox>
+
+        <TextBox x:Name="visibleTextBox" 
+                 Visibility="Collapsed"
+                 FontSize="13"
+                 FontWeight="Medium"
+                 FontFamily="Montserrat"
+                 Background="Transparent"
+                 Foreground="White"
+                 CaretBrush="#FF00C0FF"
+                 BorderBrush="DarkBlue"
+                 BorderThickness="0,0,0,1"
+                 VerticalContentAlignment="Center"/>
+
+
+        <ToggleButton x:Name="showPasswordToggleButton"  Checked="showPasswordToggleButton_Checked" Unchecked="showPasswordToggleButton_Unchecked" Width="30" Height="25" HorizontalAlignment="Right" Margin="0,0,10,0" Background="Transparent" BorderBrush="Transparent" >
+            <Image x:Name="s" Source="/Image/EyeClosed.png"></Image>
+            
+        </ToggleButton>
+
+    </Grid>
+    
     
 </UserControl>
