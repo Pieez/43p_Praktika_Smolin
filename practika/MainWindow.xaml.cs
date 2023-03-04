@@ -23,17 +23,15 @@ namespace practika
     /// </summary>
     public partial class MainWindow : Window
     {
-        public Frame frame1;
+       
 
-       UserControl userControl;
+       
         public MainWindow()
         {
             InitializeComponent();
         }
 
-        public int vx = 0;
-        List<practika.Users> Users = new List<Users>();
-        List<practika.Workers> Workers = new List<Workers>();
+        
 
 
         private void btnMinimize_Click(object sender, RoutedEventArgs e)
@@ -54,23 +52,7 @@ namespace practika
 
         private void btnLogin_Click(object sender, RoutedEventArgs e)
         {
-            string user = txtUser.Text;
-            string pas = txtPasswords.Password;
-
-            int count = Entities.GetContext().Users.Count();
-            int count_w = Entities.GetContext().Workers.Count();
-            Workers = Entities.GetContext().Workers.ToList();
-            Users = Entities.GetContext().Users.ToList();
-            for(int i = 0; i < count; i++)
-            {
-                if(Workers[i].login == user)
-                {
-                    if (Workers[i].password == pas)
-                    {
-                        
-                    }
-                }
-            }
+            
         }
     }
 }
