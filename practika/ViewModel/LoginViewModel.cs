@@ -35,7 +35,7 @@ namespace practika.ViewModel
                 OnPropertyChanged(nameof(Username));
             }
         }
-        public SecureString Password
+         public SecureString Password
         {
             get
             {

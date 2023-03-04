@@ -52,7 +52,21 @@ namespace practika
 
         private void btnLogin_Click(object sender, RoutedEventArgs e)
         {
-            
+            FormCap form = new FormCap();
+            form.ShowDialog();
+        }
+
+        UserControl1 user = new UserControl1();
+        private void CheckBox_Changed(object sender, RoutedEventArgs e)
+        {
+            if (revealModeCheckBox.IsChecked == true)
+            {
+                pass.Visibility = Visibility.Visible;
+            }
+            else
+            {
+                pass.Visibility = Visibility.Hidden;
+            }
         }
     }
 }
