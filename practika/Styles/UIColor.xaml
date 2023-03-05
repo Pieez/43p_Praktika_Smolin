@@ -30,12 +30,12 @@
     <SolidColorBrush x:Key="tittleColor3" Color="#BCBEE0"/>
     <SolidColorBrush x:Key="plainTextColor1" Color="#9497CD"/>
     <SolidColorBrush x:Key="plainTextColor2" Color="#7C80C2"/>
-    <SolidColorBrush x:Key="plainTextColor3" Color="#7376BD"/>
+    <SolidColorBrush x:Key="plainTextColor3" Color="#FF0090FF"/>
 
     <!--Panel Colors-->
-    <SolidColorBrush x:Key="panelColor" Color="#FF002FBF"/>
-    <SolidColorBrush x:Key="panelOverColor" Color="#FF0015C8"/>
-    <SolidColorBrush x:Key="panelActiveColor" Color="#FF0015C3"/>
+    <SolidColorBrush x:Key="panelColor" Color="#FF3694D0"/>
+    <SolidColorBrush x:Key="panelOverColor" Color="#FF69C4F3"/>
+    <SolidColorBrush x:Key="panelActiveColor" Color="#FF1265D4"/>
 
     <!--Button Colors-->
     <!--TextBox Colors-->

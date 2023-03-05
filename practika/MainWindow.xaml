@@ -217,6 +217,7 @@
                         Cursor="Hand"
                         Grid.Column="1"
                         Margin="0,5,0,0" 
+                        IsDefault="True"
                         Click="btnLogin_Click">
 
 

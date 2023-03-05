@@ -1,7 +1,10 @@
-﻿using System;
+﻿using practika.Model;
+using practika.Repositories;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Input;
 
@@ -9,9 +12,28 @@ namespace practika.ViewModel
 {
     public class GlavnViewModel : ViewModelsBase
     {
+        private UserAccountModel _currentUserAccount;
         private ViewModelsBase _currentChildView;
         private string _caption;
 
+
+        private IUserRepository userRepository;
+
+
+
+        public UserAccountModel CurrentUserAccount
+        {
+            get
+            {
+                return _currentUserAccount;
+            }
+
+            set
+            {
+                _currentUserAccount = value;
+                OnPropertyChanged(nameof(CurrentUserAccount));
+            }
+        }
         public ViewModelsBase CurrentChildView
         {
             get
@@ -46,11 +68,16 @@ namespace practika.ViewModel
 
         public GlavnViewModel()
         {
+
+            userRepository = new UserRepository();
+
             ShowHomeViewCommand = new ViewModelCommand(ExecuteShowHomeCommand);
             ExecuteShowHomeCommand(null);
 
             ShowProductViewCommand = new ViewModelCommand(ExecuteProductViewCommand);
-            
+
+            LoadCurrentUserData();
+
 
         }
 
@@ -64,6 +91,25 @@ namespace practika.ViewModel
         {
             CurrentChildView = new Dash();
             Caption = "Dashboard";
+        }
+
+        private void LoadCurrentUserData()
+        {
+            var user = userRepository.GetByUsername(Thread.CurrentPrincipal.Identity.Name);
+            if (user != null)
+            {
+                CurrentUserAccount = new UserAccountModel()
+                {
+                    login = user.login,
+                    DisplayName = $"{user.name}",
+                    ProfilePicture = null
+                };
+            }
+            else
+            {
+
+
+            }
         }
     }
 }

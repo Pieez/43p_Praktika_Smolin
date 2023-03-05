@@ -104,7 +104,6 @@
     <Compile Include="ViewModel\Dash.cs" />
     <Compile Include="ViewModel\GlavnViewModel.cs" />
     <Compile Include="ViewModel\LoginViewModel.cs" />
-    <Compile Include="ViewModel\MainViewModel.cs" />
     <Compile Include="ViewModel\ProductModel.cs" />
     <Compile Include="ViewModel\ViewModelBase.cs" />
     <Compile Include="ViewModel\ViewModelCommand.cs" />
@@ -210,6 +209,7 @@
     <Resource Include="Image\EyeOpened.png" />
     <Resource Include="Image\EyeClosed.png" />
     <Resource Include="Image\Interface.png" />
+    <Resource Include="Image\NUser.png" />
     <Content Include="Model1.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>Model1.Context.cs</LastGenOutput>

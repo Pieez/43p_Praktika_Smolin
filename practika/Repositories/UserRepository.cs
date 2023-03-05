@@ -25,8 +25,8 @@ namespace practika.Repositories
             {
                 connection.Open();
                 command.Connection = connection;
-                command.CommandText = "select * from [Workers] where login=@username and [password]=@password";
-                command.Parameters.Add("@username", SqlDbType.NVarChar).Value = credential.UserName;
+                command.CommandText = "select * from [Workers] where login=@login and [password]=@password";
+                command.Parameters.Add("@login", SqlDbType.NVarChar).Value = credential.UserName;
                 command.Parameters.Add("@password", SqlDbType.NVarChar).Value = credential.Password;
                 validUser = command.ExecuteScalar() != null;
             }
@@ -56,20 +56,22 @@ namespace practika.Repositories
             {
                 connection.Open();
                 command.Connection = connection;
-                command.CommandText = "select * from [User] where username=@login ";
-                command.Parameters.Add("@username", SqlDbType.NVarChar).Value = username;
+                command.CommandText = "select * from [Workers] where login=@login ";
+                command.Parameters.Add("@login", SqlDbType.NVarChar).Value = username;
                 using (var reader = command.ExecuteReader())
                 {
                     if (reader.Read())
                     {
                         user = new UserModel()
                         {
-                            Id = reader[0].ToString(),
-                            Username = reader[1].ToString(),
-                            Password = string.Empty,
-                            Name = reader[3].ToString(),
-                            LastName = reader[4].ToString(),
-                            Email = reader[5].ToString(),
+                            id = reader[0].ToString(),
+                            name = reader[1].ToString(),
+                            login = reader[2].ToString(),
+                            password = string.Empty,
+                            ip = reader[3].ToString(),
+                            lastenter = reader[4].ToString(),
+                            dolgnost = reader[5].ToString(),
+                            analysator = reader[6].ToString(),
 
                         };
                     }
