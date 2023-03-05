@@ -56,7 +56,7 @@ namespace practika
             graphics.Clear(System.Drawing.Color.White);
             graphics.TextRenderingHint = System.Drawing.Text.TextRenderingHint.AntiAlias;
 
-            System.Drawing.Font font = new System.Drawing.Font(new System.Drawing.FontFamily("Arial"), 24);
+            System.Drawing.Font font = new System.Drawing.Font(new System.Drawing.FontFamily("Bradley Hand ITC"), 16);
             System.Drawing.Brush brush = new System.Drawing.SolidBrush(System.Drawing.Color.Black);
 
             graphics.DrawString(text, font, brush, 10, 10);
