@@ -50,10 +50,22 @@ namespace practika
                 DragMove();
         }
 
+
+        private int count = 0;
         private void btnLogin_Click(object sender, RoutedEventArgs e)
         {
-            FormCap form = new FormCap();
-            form.ShowDialog();
+            UserControl1 user = new UserControl1();
+            string password = "myPassword";
+            if (user.txtPasswords.Password != password)
+            {
+                count++;
+                if (count == 3)
+                {
+                    CAPTCHA form = new CAPTCHA();
+                    form.ShowDialog();
+                    count = 0;
+                }
+            }
         }
 
         
