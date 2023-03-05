@@ -13,7 +13,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
-using System.Windows.Controls;
+
 
 namespace practika.CustomControls
 {
@@ -54,6 +54,8 @@ namespace practika.CustomControls
             visibleTextBox.Visibility = Visibility.Collapsed;
             txtPasswords.Password = visibleTextBox.Text;
         }
+
+        
 
     }
 }
