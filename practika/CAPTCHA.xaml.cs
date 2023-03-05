@@ -14,6 +14,8 @@ using System.Windows.Shapes;
 using System.Drawing;
 using System.Drawing.Imaging;
 using System.IO;
+using practika.ViewModel;
+using System.ComponentModel;
 
 namespace practika
 {
@@ -75,20 +77,31 @@ namespace practika
             RefreshCaptcha();
         }
 
+
+
+        
+        
+
         private void CheckButton_Click(object sender, RoutedEventArgs e)
         {
             if (captchaTextBox.Text.Equals(captchaText, StringComparison.OrdinalIgnoreCase))
             {
-                MessageBox.Show("Харош!");
-                RefreshCaptcha();
+                
+                Close();
+                
             }
             else
             {
-                MessageBox.Show("Ты ШО СЛЕПОЙ!");
+                ErrorMessage.Text = "* Неправильно введен текст";
                 RefreshCaptcha();
             }
         }
 
+        private void Window_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+            if (e.LeftButton == MouseButtonState.Pressed)
+                DragMove();
+        }
     }
 }
 
