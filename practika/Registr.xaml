@@ -7,6 +7,42 @@
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
     <Grid>
-        <Image Source="/Image/maxresdefault.jpg"/>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <!--Верхняя панель -->
+        <StackPanel Orientation="Horizontal" Margin="10">
+            <TextBox x:Name="SearchTextBox" Width="200" Margin="0 0 10 0"
+Text="Введите для поиска"/>
+            <ComboBox x:Name="SortComboBox" Width="150" Margin="0 0 10 0">
+                <ComboBoxItem Content="Сортировка"/>
+                <!--Добавьте другие варианты сортировки, если это необходимо -->
+            </ComboBox>
+            <Button x:Name="FilterButton" Content="Фильтрация" Width="100"/>
+        </StackPanel>
+
+        <!-- Нижняя часть окна -->
+        <ListBox x:Name="DataListBox" Grid.Row="1" Margin="10"
+ScrollViewer.HorizontalScrollBarVisibility="Disabled">
+            <ListBox.ItemTemplate>
+                <DataTemplate>
+                    <Grid Margin="5">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition/>
+                        </Grid.ColumnDefinitions>
+                        <TextBlock Text="{Binding ColumnName1}" VerticalAlignment="Center"/>
+                        <TextBox Text="{Binding ColumnValue1}" Grid.Column="1"/>
+                       <!-- <TextBlock Text="{Binding ColumnName2}" VerticalAlignment="Center" Margin="0 5"/>-->
+                    <!--    <ComboBox ItemsSource="{Binding Column2Options}" SelectedItem="{Binding ColumnValue2}"
+Grid.Column="1" Margin="0 5"/> -->
+                        
+                        <!--Добавьте другие элементы управления для других столбцов, если это необходимо -->
+                    </Grid>
+                </DataTemplate>
+            </ListBox.ItemTemplate>
+        </ListBox>
     </Grid>
 </UserControl>

@@ -13,6 +13,7 @@ using System.Windows.Interop;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using System.Windows.Threading;
 
 namespace practika
 {
@@ -21,9 +22,38 @@ namespace practika
     /// </summary>
     public partial class Glavn : Window
     {
+
+        private DispatcherTimer autoCloseTimer;
+        private DateTime startTime;
         public Glavn()
         {
             InitializeComponent();
+
+            startTime = DateTime.Now;
+
+            autoCloseTimer = new DispatcherTimer();
+            autoCloseTimer.Interval = TimeSpan.FromSeconds(1) - (DateTime.Now - startTime);
+            autoCloseTimer.Tick += AutoCloseTimer_Tick;
+            autoCloseTimer.Start();
+
+            TimerLabel.DataContext = TimeSpan.FromSeconds(7200);
+
+        }
+
+        private void AutoCloseTimer_Tick(object sender, EventArgs e)
+        {
+            Dispatcher.Invoke(() =>
+            {
+                TimeSpan remainingTime = TimeSpan.FromSeconds(7200) - (DateTime.Now - startTime);
+                TimerLabel.Content = remainingTime.ToString(@"hh\:mm\:ss");
+            });
+            if (DateTime.Now.Subtract(startTime).TotalSeconds >= 7200)
+            {
+                autoCloseTimer.Stop();
+                MessageBox.Show("Timer Out");
+                Application.Current.Shutdown();
+            }
+
         }
 
         private void btnClose_Click(object sender, RoutedEventArgs e)

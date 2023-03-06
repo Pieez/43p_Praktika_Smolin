@@ -78,7 +78,7 @@
                                  Command="{Binding ShowHomeViewCommand}">
                         <StackPanel Orientation="Horizontal">
                             <Image Source="/Image/EyeClosed.png" Width="40" Height="40" Margin="10,0,0,0"></Image>
-                            <TextBlock Text="Dashboard" FontSize="16" Margin="10"></TextBlock>
+                            <TextBlock Text="Dashboard" FontFamily="Comic Sans MS" FontSize="16" Margin="10"></TextBlock>
                         </StackPanel>
                     </RadioButton>
 
@@ -87,7 +87,7 @@
                                  Command="{Binding ShowProductViewCommand}">
                         <StackPanel Orientation="Horizontal">
                             <Image Source="/Image/EyeOpened.png" Width="40" Height="40" Margin="10,0,0,0"></Image>
-                            <TextBlock Text="Product" FontSize="16" Margin="10"></TextBlock>
+                            <TextBlock Text="Product" FontFamily="Comic Sans MS" FontSize="16" Margin="10"></TextBlock>
                         </StackPanel>
                     </RadioButton>
 
@@ -220,9 +220,11 @@
                             <TextBlock Text="{Binding Caption}"
                                        Foreground="{StaticResource tittleColor2}"
                                        FontSize="16"
-                                       FontFamily="Montserrat"
+                                       FontFamily="Comic Sans MS"
                                        FontWeight="Medium"
                                        VerticalAlignment="Center"/>
+
+                            <Label x:Name="TimerLabel" Content="{Binding}" FontSize="16"></Label>
 
                         </StackPanel>
 
