@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
@@ -13,6 +14,10 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using System.Data.SqlClient;
+using static System.Net.Mime.MediaTypeNames;
+using System.Net.NetworkInformation;
+using practika.ViewModel;
 
 namespace practika
 {
@@ -25,30 +30,12 @@ namespace practika
         {
             InitializeComponent();
 
+           // DataContext = new Date();
 
-            //// Подключение к базе данных
-            //SqlConnection connection = new SqlConnection("server=ngknn.ru;Trusted_Connection=No;DataBase=43p_praktika_Smolin;User=33П;PWD=12357");
-            //connection.Open();
-
-            //// Выполнение запроса
-            //SqlCommand command = new SqlCommand("SELECT * FROM [Service] ", connection);
-            //SqlDataReader reader = command.ExecuteReader();
-
-            //// Заполнение ListBox элементами
-            //while (reader.Read())
-            //{
-            //    DataListBox.Items.Add(new
-            //    {
-            //        ColumnName1 = "service",
-            //        ColumnValue1 = reader["service"],
-                    
-                    
-            //        //Column2Options = new List<string>() { "service", "price" },
-
-            //        // Добавьте другие столбцы, если это необходимо
-            //    });
-
-            //}
         }
+
+
+        
+
     }
 }

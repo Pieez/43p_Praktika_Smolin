@@ -3,46 +3,42 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-             xmlns:local="clr-namespace:practika"
+             xmlns:local="clr-namespace:practika" xmlns:viewmodel="clr-namespace:practika.ViewModel" d:DataContext="{d:DesignInstance Type=viewmodel:Date}"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
-    <Grid>
-        <Grid.RowDefinitions>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="*"/>
-        </Grid.RowDefinitions>
 
-        <!--Верхняя панель -->
-        <StackPanel Orientation="Horizontal" Margin="10">
-            <TextBox x:Name="SearchTextBox" Width="200" Margin="0 0 10 0"
-Text="Введите для поиска"/>
-            <ComboBox x:Name="SortComboBox" Width="150" Margin="0 0 10 0">
-                <ComboBoxItem Content="Сортировка"/>
-                <!--Добавьте другие варианты сортировки, если это необходимо -->
-            </ComboBox>
-            <Button x:Name="FilterButton" Content="Фильтрация" Width="100"/>
+<!--
+    <UserControl.DataContext>
+        <viewmodel:Date />
+    </UserControl.DataContext>
+-->
+    <StackPanel Orientation="Vertical">
+        <StackPanel Orientation="Horizontal">
+            <TextBox x:Name="SearchTextBox" Text="Enter search text here" Width="200" Margin="5" />
+            <Button Content="Search" Command="{Binding Path=SearchCommand}" Margin="5" />
+        
+        
+            <TextBlock Text="Sort by:" Margin="5" />
+            <Button Content="Service" Command="{Binding Path=SortByServiceCommand}" Margin="5" />
+            <Button Content="Price" Command="{Binding Path=SortByPriceCommand}" Margin="5" />
+       
+            <TextBlock Text="Filter by:" Margin="5" />
+            <Button Content="Cheap" Command="{Binding Path=FilterByCheapCommand}" Margin="5" />
+            <Button Content="Expensive" Command="{Binding Path=FilterByExpensiveCommand}" Margin="5" />
         </StackPanel>
+        <DataGrid x:Name="MyDataGrid" ItemsSource="{Binding Path=MyDataList}" Margin="5">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Service" Binding="{Binding Path=Service}" />
+                <DataGridTextColumn Header="Price" Binding="{Binding Path=Price}" />
+            </DataGrid.Columns>
+        </DataGrid>
+        <StackPanel Orientation="Horizontal">
+            <Button Content="1" Command="{Binding Path=GoToPage1Command}" Margin="5" />
+            <Button Content="2" Command="{Binding Path=GoToPage2Command}" Margin="5" />
+            <Button Content="3" Command="{Binding Path=GoToPage3Command}" Margin="5" />
+            <Button Content="4" Command="{Binding Path=GoToPage4Command}" Margin="5" />
+        </StackPanel>
+    </StackPanel>
 
-        <!-- Нижняя часть окна -->
-        <ListBox x:Name="DataListBox" Grid.Row="1" Margin="10"
-ScrollViewer.HorizontalScrollBarVisibility="Disabled">
-            <ListBox.ItemTemplate>
-                <DataTemplate>
-                    <Grid Margin="5">
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="Auto"/>
-                            <ColumnDefinition/>
-                        </Grid.ColumnDefinitions>
-                        <TextBlock Text="{Binding ColumnName1}" VerticalAlignment="Center"/>
-                        <TextBox Text="{Binding ColumnValue1}" Grid.Column="1"/>
-                       <!-- <TextBlock Text="{Binding ColumnName2}" VerticalAlignment="Center" Margin="0 5"/>-->
-                    <!--    <ComboBox ItemsSource="{Binding Column2Options}" SelectedItem="{Binding ColumnValue2}"
-Grid.Column="1" Margin="0 5"/> -->
-                        
-                        <!--Добавьте другие элементы управления для других столбцов, если это необходимо -->
-                    </Grid>
-                </DataTemplate>
-            </ListBox.ItemTemplate>
-        </ListBox>
-    </Grid>
+
 </UserControl>
