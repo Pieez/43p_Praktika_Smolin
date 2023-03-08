@@ -35,8 +35,9 @@
 
 ```
 Осторожно! Из-за защищенность пароля может быть программа тормозит. В случае чего, просто перезапусти программу
-![image](https://user-images.githubusercontent.com/104516380/223789935-dcf92b11-7b2d-4ccd-b379-68db1ec51497.png)
 ```
+![image](https://user-images.githubusercontent.com/104516380/223789935-dcf92b11-7b2d-4ccd-b379-68db1ec51497.png)
+
 Из за того что я пытался внедрить БД из Service. Я допустил где-то ошибку. И выдается ошибка при входе в Главый экран
 
 ![image](https://user-images.githubusercontent.com/104516380/223790149-605937b8-0e06-4942-bd64-71085b6f8b41.png)
