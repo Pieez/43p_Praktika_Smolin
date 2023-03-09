@@ -38,11 +38,13 @@
 ```
 ![image](https://user-images.githubusercontent.com/104516380/223789935-dcf92b11-7b2d-4ccd-b379-68db1ec51497.png)
 
-Из за того что я пытался внедрить БД из Service. Я допустил где-то ошибку. И выдается ошибка при входе в Главый экран
+### Главный экран 
+Сверху справа расположена подпись User, слева Таймер до закрытия. Снизу данные из БД SQL Server
 
-![image](https://user-images.githubusercontent.com/104516380/223790149-605937b8-0e06-4942-bd64-71085b6f8b41.png)
+![image](https://user-images.githubusercontent.com/104516380/224056570-09566a56-47ff-49bd-8245-0a31304f56cf.png)
 
-Сам главный экран должен выглядет вот так
+### 2 Окно 
+Добавлени и удаление из БД SQL Server
 
-![image](https://user-images.githubusercontent.com/104516380/223791000-e9d1e32b-08c1-4dc7-8a63-6f4ffa6c4acb.png)
+![image](https://user-images.githubusercontent.com/104516380/224057198-d6e5e39d-49de-4db6-bf4c-2911285be157.png)
 
