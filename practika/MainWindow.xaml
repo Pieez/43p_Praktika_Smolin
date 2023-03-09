@@ -207,7 +207,7 @@
                                Margin="0,10,0,0"
                                TextWrapping="Wrap"/>
 
-                <Label Name="TimerLabel" Content="0:00" ></Label>
+                
                 
                 <Button x:Name="btnLogin"
                         Command="{Binding LoginCommand}"
@@ -251,13 +251,7 @@
                             HorizontalAlignment="Center"
                             Margin="0,10,0,0">
 
-                    <TextBlock 
-                               Background="Transparent"
-                               Text="Вы не зарегистрованы ?"
-                               FontSize="10"
-                               FontFamily="Montserrat"
-                               Grid.Column="0"
-                               Foreground="#FF5D5D5D"/>
+                   
 
 
                    

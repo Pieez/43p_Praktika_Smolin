@@ -29,8 +29,7 @@ namespace practika
         public Registr()
         {
             InitializeComponent();
-
-           // DataContext = new Date();
+ 
 
         }
 

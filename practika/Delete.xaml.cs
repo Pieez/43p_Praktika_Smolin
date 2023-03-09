@@ -1,4 +1,5 @@
-﻿using System;
+﻿using practika.ViewModel;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -16,13 +17,15 @@ using System.Windows.Shapes;
 namespace practika
 {
     /// <summary>
-    /// Логика взаимодействия для ProuctView.xaml
+    /// Логика взаимодействия для Delete.xaml
     /// </summary>
-    public partial class ProuctView : UserControl
+    public partial class Delete : UserControl
     {
-        public ProuctView()
+        public Delete()
         {
             InitializeComponent();
+
+            DataContext = new Date();
         }
     }
 }

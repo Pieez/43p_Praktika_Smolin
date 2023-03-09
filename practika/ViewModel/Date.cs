@@ -19,6 +19,11 @@ namespace practika.ViewModel
 
         public event PropertyChangedEventHandler PropertyChanged;
 
+
+        
+
+      
+
         public string SearchText
         {
             get { return _searchText; }
@@ -81,10 +86,9 @@ namespace practika.ViewModel
                 {
                     MyDataList.Add(new Registr
                     {
-                        
                         service = reader.GetString(0),
-                        price = reader.GetDecimal(2)
-                    }) ;
+                        price = Convert.ToDecimal(reader.GetValue(1))
+                    });
                 }
 
                 reader.Close();
@@ -93,8 +97,20 @@ namespace practika.ViewModel
             _filteredDataList = MyDataList;
         }
 
+
+
+
+
+
+
         private void ExecuteSearchCommand(object obj)
         {
+            if (string.IsNullOrEmpty(SearchText))
+            {
+                // если SearchText пустой или равен null, то ничего не делаем
+                return;
+            }
+
             _filteredDataList = new List<Registr>();
 
             foreach (var item in MyDataList)
@@ -126,7 +142,7 @@ namespace practika.ViewModel
 
             foreach (var item in MyDataList)
             {
-                if (item.price < 50)
+                if (item.price > 50)
                 {
                     _filteredDataList.Add(item);
                 }
@@ -158,24 +174,35 @@ namespace practika.ViewModel
 
         private void ExecuteGoToPage2Command(object obj)
         {
-            _currentPage = 2;
+            _currentPage = 2;        
             UpdatePagedData();
         }
 
         private void ExecuteGoToPage3Command(object obj)
         {
+
+            if (MyDataList.Count > 0)
+            {
+                return; // если список пустой, то выход из метода без изменения _currentPage
+            }
             _currentPage = 3;
             UpdatePagedData();
         }
 
         private void ExecuteGoToPage4Command(object obj)
         {
+            if (MyDataList.Count > 0)
+            {
+                return; // если список пустой, то выход из метода без изменения _currentPage
+            }
             _currentPage = 4;
             UpdatePagedData();
         }
 
         private void UpdatePagedData()
         {
+
+
             int startIndex = (_currentPage - 1) * PageSize;
             int endIndex = startIndex + PageSize;
 
@@ -183,6 +210,7 @@ namespace practika.ViewModel
             {
                 endIndex = _filteredDataList.Count;
             }
+
 
             MyDataList = _filteredDataList.GetRange(startIndex, endIndex - startIndex);
         }

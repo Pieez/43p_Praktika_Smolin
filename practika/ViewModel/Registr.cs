@@ -8,7 +8,6 @@ namespace practika.ViewModel
 {
     public class Registr
     {
-        public string id { get; set; }
         public string service { get; set; }
         public decimal price { get; set; }
     }

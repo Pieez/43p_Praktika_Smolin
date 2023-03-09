@@ -7,37 +7,76 @@
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
 
-<!--
+
     <UserControl.DataContext>
         <viewmodel:Date />
     </UserControl.DataContext>
--->
+    
     <StackPanel Orientation="Vertical">
         <StackPanel Orientation="Horizontal">
-            <TextBox x:Name="SearchTextBox" Text="Enter search text here" Width="200" Margin="5" />
-            <Button Content="Search" Command="{Binding Path=SearchCommand}" Margin="5" />
-        
-        
-            <TextBlock Text="Sort by:" Margin="5" />
-            <Button Content="Service" Command="{Binding Path=SortByServiceCommand}" Margin="5" />
-            <Button Content="Price" Command="{Binding Path=SortByPriceCommand}" Margin="5" />
-       
-            <TextBlock Text="Filter by:" Margin="5" />
-            <Button Content="Cheap" Command="{Binding Path=FilterByCheapCommand}" Margin="5" />
-            <Button Content="Expensive" Command="{Binding Path=FilterByExpensiveCommand}" Margin="5" />
+            
+            <TextBox x:Name="SearchTextBox" 
+                     Text="Enter search text here" 
+                     Width="200" 
+                     Margin="5" 
+                     FontFamily="Comic Sans MS"/>
+            
+            <Button Content="Поиск" 
+                    Command="{Binding Path=SearchCommand}" 
+                    Margin="5" Background="{x:Null}" 
+                    BorderBrush="{x:Null}" 
+                    FontFamily="Comic Sans MS"/>
+
+
+            <TextBlock Text="Сортировка:" 
+                       Margin="5"
+                       FontFamily="Comic Sans MS"></TextBlock>
+            
+            <ComboBox x:Name="SortByComboBox" Margin="5" >
+                <ComboBox.ItemsSource>
+                    <x:Array Type="{x:Type Button}">
+                        <Button Content="Service" Command="{Binding Path=SortByServiceCommand}" Margin="5" Background="Transparent" BorderBrush="{x:Null}" FontFamily="Comic Sans MS" />
+                        <Button Content="Price" Command="{Binding Path=SortByPriceCommand}" Margin="5" Background="Transparent" BorderBrush="{x:Null}" FontFamily="Comic Sans MS"/>
+                    </x:Array>
+                </ComboBox.ItemsSource>
+            </ComboBox>
+            
+
+
+            <TextBlock Text="Фильтрация:" 
+                       Margin="5" 
+                       FontFamily="Comic Sans MS"/>
+            
+            <ComboBox x:Name="FiltrByComboBox" Margin="5" >
+                <ComboBox.ItemsSource>
+                    <x:Array Type="{x:Type Button}">
+                        <Button Content="Cheap" Command="{Binding Path=FilterByCheapCommand}" Margin="5" FontFamily="Comic Sans MS"/>
+                        <Button Content="Expensive" Command="{Binding Path=FilterByExpensiveCommand}" Margin="5" FontFamily="Comic Sans MS"/>
+                    </x:Array>
+                </ComboBox.ItemsSource>
+            </ComboBox>
         </StackPanel>
-        <DataGrid x:Name="MyDataGrid" ItemsSource="{Binding Path=MyDataList}" Margin="5">
+        
+        
+        <StackPanel Orientation="Horizontal" VerticalAlignment="Bottom" HorizontalAlignment="Right">
+            <Button Content="1" Command="{Binding Path=GoToPage1Command}" Margin="5"  Background="Transparent" BorderBrush="{x:Null}" FontFamily="Comic Sans MS"/>
+            <Button Content="2" Command="{Binding Path=GoToPage2Command}" Margin="5"  Background="Transparent" BorderBrush="{x:Null}" FontFamily="Comic Sans MS"/>
+            <Button Content="3" Command="{Binding Path=GoToPage3Command}" Margin="5"  Background="Transparent" BorderBrush="{x:Null}" FontFamily="Comic Sans MS"/>
+            <Button Content="4" Command="{Binding Path=GoToPage4Command}" Margin="5"  Background="Transparent" BorderBrush="{x:Null}" FontFamily="Comic Sans MS"/>
+        </StackPanel>
+
+        <DataGrid x:Name="MyDataGrid" ItemsSource="{Binding Path=MyDataList}" Margin="5" AutoGenerateColumns="False" Background="Transparent">
+            <DataGrid.Resources>
+                <Style TargetType="{x:Type DataGridRow}">
+                    <Setter Property="Margin" Value="0,0,0,5" />
+                </Style>
+            </DataGrid.Resources>
             <DataGrid.Columns>
-                <DataGridTextColumn Header="Service" Binding="{Binding Path=Service}" />
-                <DataGridTextColumn Header="Price" Binding="{Binding Path=Price}" />
+                <DataGridTextColumn Header="Service" Binding="{Binding Path=service}" FontFamily="Comic Sans MS"/>
+                <DataGridTextColumn Header="Price" Binding="{Binding Path=price}" FontFamily="Comic Sans MS"/>
             </DataGrid.Columns>
         </DataGrid>
-        <StackPanel Orientation="Horizontal">
-            <Button Content="1" Command="{Binding Path=GoToPage1Command}" Margin="5" />
-            <Button Content="2" Command="{Binding Path=GoToPage2Command}" Margin="5" />
-            <Button Content="3" Command="{Binding Path=GoToPage3Command}" Margin="5" />
-            <Button Content="4" Command="{Binding Path=GoToPage4Command}" Margin="5" />
-        </StackPanel>
+       
     </StackPanel>
 
 
