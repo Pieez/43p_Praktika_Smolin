@@ -261,7 +261,7 @@
 
             </StackPanel>
 
-            <ContentControl Content="{Binding CurrentChildView}"/>
+          
             
         </Grid>
     </Border>

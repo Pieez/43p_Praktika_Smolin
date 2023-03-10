@@ -1,6 +1,8 @@
-﻿using System;
+﻿using practika.Model;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
@@ -23,17 +25,18 @@ namespace practika.ViewModel
         
 
       
-
-        public string SearchText
+       
+        public string SearchTextBox
         {
             get { return _searchText; }
             set
             {
                 _searchText = value;
-                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(SearchText)));
+                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(SearchTextBox)));
             }
         }
 
+        // Для показа в DataGrid
         public List<Registr> MyDataList
         {
             get { return _myDataList; }
@@ -44,6 +47,7 @@ namespace practika.ViewModel
             }
         }
 
+        // Комманды для подключения к элементам
         public ICommand SearchCommand { get; set; }
         public ICommand SortByServiceCommand { get; set; }
         public ICommand SortByPriceCommand { get; set; }
@@ -66,12 +70,31 @@ namespace practika.ViewModel
             GoToPage3Command = new ViewModelCommand(ExecuteGoToPage3Command);
             GoToPage4Command = new ViewModelCommand(ExecuteGoToPage4Command);
 
+            Dobav();
+
             LoadData();
+        }
+
+
+        private void Dobav()
+        {
+            string connectionString = "server=ngknn.ru;Trusted_Connection=No;DataBase=43p_praktika_Smolin;User=33П;PWD=12357";
+            string sql = "INSERT INTO Service (service=@service, price=@price) VALUES ('New Service', 10.0)";
+            UserAdd userAdd;
+
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                SqlCommand command = new SqlCommand(sql, connection);
+                connection.Open();
+                command.Parameters.Add("@service", SqlDbType.NVarChar) ; 
+                command.Parameters.Add("@price", SqlDbType.NVarChar);
+                int rowsAffected = command.ExecuteNonQuery();
+            }
         }
 
         private void LoadData()
         {
-            // Retrieve data from SQL database and store it in MyDataList
+            // Подключения в DataGrid
             string connectionString = "server=ngknn.ru;Trusted_Connection=No;DataBase=43p_praktika_Smolin;User=33П;PWD=12357";
             string sql = "SELECT service, price FROM Service";
             MyDataList = new List<Registr>();
@@ -99,13 +122,12 @@ namespace practika.ViewModel
 
 
 
+       
 
-
-
-
+        // Для подключения к элементам "Поиск"
         private void ExecuteSearchCommand(object obj)
         {
-            if (string.IsNullOrEmpty(SearchText))
+            if (string.IsNullOrEmpty(SearchTextBox))
             {
                 // если SearchText пустой или равен null, то ничего не делаем
                 return;
@@ -115,7 +137,7 @@ namespace practika.ViewModel
 
             foreach (var item in MyDataList)
             {
-                if (item.service.Contains(SearchText))
+                if (item.service.Contains(SearchTextBox))
                 {
                     _filteredDataList.Add(item);
                 }
@@ -124,25 +146,29 @@ namespace practika.ViewModel
             MyDataList = _filteredDataList;
         }
 
+
+        // Для подключения к элементам "Сортировка сервис"
         private void ExecuteSortByServiceCommand(object obj)
         {
             _filteredDataList.Sort((a, b) => a.service.CompareTo(b.service));
             MyDataList = _filteredDataList;
         }
 
+        // Для подключения к элементам "Сортировка Цена"
         private void ExecuteSortByPriceCommand(object obj)
         {
             _filteredDataList.Sort((a, b) => a.price.CompareTo(b.price));
             MyDataList = _filteredDataList;
         }
 
+        // Для подключения к элементам "Фильтрация"
         private void ExecuteFilterByCheapCommand(object obj)
         {
             _filteredDataList = new List<Registr>();
 
             foreach (var item in MyDataList)
             {
-                if (item.price > 50)
+                if (item.price < 300)
                 {
                     _filteredDataList.Add(item);
                 }
@@ -151,6 +177,7 @@ namespace practika.ViewModel
             MyDataList = _filteredDataList;
         }
 
+        // Для подключения к элементам "Фильтрация"
         private void ExecuteFilterByExpensiveCommand(object obj)
         {
             _filteredDataList = new List<Registr>();
@@ -166,38 +193,46 @@ namespace practika.ViewModel
             MyDataList = _filteredDataList;
         }
 
+        // Открывает 1 страницу
         private void ExecuteGoToPage1Command(object obj)
         {
             _currentPage = 1;
             UpdatePagedData();
         }
 
+        // Открывает 2 страницу
         private void ExecuteGoToPage2Command(object obj)
         {
+           
             _currentPage = 2;        
             UpdatePagedData();
         }
 
+        // Открывает 3 страницу
         private void ExecuteGoToPage3Command(object obj)
         {
 
-            if (MyDataList.Count > 0)
+            if (MyDataList.Count < PageSize * 3)
             {
-                return; // если список пустой, то выход из метода без изменения _currentPage
+                return; // если список пустой или не содержит нужного количества элементов, то выход из метода без изменения _currentPage
             }
             _currentPage = 3;
             UpdatePagedData();
+            
         }
 
+
+        // Открывает 4 страницу
         private void ExecuteGoToPage4Command(object obj)
         {
-            if (MyDataList.Count > 0)
+            if (MyDataList.Count < PageSize * 4)
             {
-                return; // если список пустой, то выход из метода без изменения _currentPage
+                return; // если список пустой или не содержит нужного количества элементов, то выход из метода без изменения _currentPage
             }
             _currentPage = 4;
             UpdatePagedData();
         }
+
 
         private void UpdatePagedData()
         {

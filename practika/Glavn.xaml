@@ -10,7 +10,7 @@
         WindowStyle="None"
         AllowsTransparency="True"
         WindowStartupLocation="CenterScreen"
-        Title="Glavn" Height="450" Width="800">
+        Title="Glavn" Height="550" Width="950">
 
 
     <Window.DataContext>
@@ -62,7 +62,7 @@
                                 Height="35"
                                 Margin="15,25,0,40">
 
-                        <Image Source="/Image/logo.png" Height="30"/>
+                        <Image Source="/Image/logo.png" Height="40"/>
                         <TextBlock Text="Laboratory"
                                    
                                    FontSize="25"

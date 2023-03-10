@@ -16,7 +16,7 @@
         <StackPanel Orientation="Horizontal">
             
             <TextBox x:Name="SearchTextBox" 
-                     Text="Enter search text here" 
+                     
                      Width="200" 
                      Margin="5" 
                      FontFamily="Comic Sans MS"/>
@@ -25,21 +25,17 @@
                     Command="{Binding Path=SearchCommand}" 
                     Margin="5" Background="{x:Null}" 
                     BorderBrush="{x:Null}" 
-                    FontFamily="Comic Sans MS"/>
+                    FontFamily="Comic Sans MS" />
 
 
             <TextBlock Text="Сортировка:" 
                        Margin="5"
                        FontFamily="Comic Sans MS"></TextBlock>
             
-            <ComboBox x:Name="SortByComboBox" Margin="5" >
-                <ComboBox.ItemsSource>
-                    <x:Array Type="{x:Type Button}">
+            
                         <Button Content="Service" Command="{Binding Path=SortByServiceCommand}" Margin="5" Background="Transparent" BorderBrush="{x:Null}" FontFamily="Comic Sans MS" />
                         <Button Content="Price" Command="{Binding Path=SortByPriceCommand}" Margin="5" Background="Transparent" BorderBrush="{x:Null}" FontFamily="Comic Sans MS"/>
-                    </x:Array>
-                </ComboBox.ItemsSource>
-            </ComboBox>
+                  
             
 
 
@@ -47,14 +43,10 @@
                        Margin="5" 
                        FontFamily="Comic Sans MS"/>
             
-            <ComboBox x:Name="FiltrByComboBox" Margin="5" >
-                <ComboBox.ItemsSource>
-                    <x:Array Type="{x:Type Button}">
+            
                         <Button Content="Cheap" Command="{Binding Path=FilterByCheapCommand}" Margin="5" FontFamily="Comic Sans MS"/>
                         <Button Content="Expensive" Command="{Binding Path=FilterByExpensiveCommand}" Margin="5" FontFamily="Comic Sans MS"/>
-                    </x:Array>
-                </ComboBox.ItemsSource>
-            </ComboBox>
+      
         </StackPanel>
         
         
