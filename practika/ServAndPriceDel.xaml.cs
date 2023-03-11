@@ -17,19 +17,15 @@ using System.Windows.Shapes;
 namespace practika
 {
     /// <summary>
-    /// Логика взаимодействия для ServAndPrice.xaml
+    /// Логика взаимодействия для ServAndPriceDel.xaml
     /// </summary>
-    public partial class ServAndPrice : Page
+    public partial class ServAndPriceDel : Page
     {
         public Delete delete;
-
-
-        public ServAndPrice(Delete _delete)
+        public ServAndPriceDel(Delete _delete)
         {
             InitializeComponent();
             delete = _delete;
-
-            
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
@@ -39,16 +35,23 @@ namespace practika
                 String connectionString = "server=ngknn.ru;Trusted_Connection=No;DataBase=43p_praktika_Smolin;User=33П;PWD=12357";
                 SqlConnection con = new SqlConnection(connectionString);
                 con.Open();
-                string query = "INSERT INTO Service (service , price) VALUES (@service, @price)";
+                string query = "DELETE FROM Service WHERE service = @service";
                 SqlCommand command = new SqlCommand(query, con);
                 command.Parameters.AddWithValue("@service", txtServ.Text);
-                command.Parameters.AddWithValue("@price", txtPrice.Text);
-                int result = command.ExecuteNonQuery(); // добавлено выполнение запроса
+                int result = command.ExecuteNonQuery();
                 con.Close();
+                if (result > 0)
+                {
+                    MessageBox.Show("Услуга успешно удалена");
+                }
+                else
+                {
+                    MessageBox.Show("Услуга не была удалена, возможно ее нет в базе данных");
+                }
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message); // добавлено вывод сообщения об ошибке
+                MessageBox.Show(ex.Message);
             }
         }
     }

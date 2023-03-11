@@ -70,27 +70,13 @@ namespace practika.ViewModel
             GoToPage3Command = new ViewModelCommand(ExecuteGoToPage3Command);
             GoToPage4Command = new ViewModelCommand(ExecuteGoToPage4Command);
 
-            Dobav();
+            
 
             LoadData();
         }
 
 
-        private void Dobav()
-        {
-            string connectionString = "server=ngknn.ru;Trusted_Connection=No;DataBase=43p_praktika_Smolin;User=33П;PWD=12357";
-            string sql = "INSERT INTO Service (service=@service, price=@price) VALUES ('New Service', 10.0)";
-            UserAdd userAdd;
-
-            using (SqlConnection connection = new SqlConnection(connectionString))
-            {
-                SqlCommand command = new SqlCommand(sql, connection);
-                connection.Open();
-                command.Parameters.Add("@service", SqlDbType.NVarChar) ; 
-                command.Parameters.Add("@price", SqlDbType.NVarChar);
-                int rowsAffected = command.ExecuteNonQuery();
-            }
-        }
+       
 
         private void LoadData()
         {

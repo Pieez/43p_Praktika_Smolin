@@ -34,7 +34,8 @@ namespace practika
 
         public enum page
         {
-            serv
+            serv,
+            servDel
         }
 
         void Open(page page)
@@ -44,6 +45,10 @@ namespace practika
                 frame.Navigate(new ServAndPrice(this));
             }
 
+            if (page == page.servDel)
+            {
+                frame.Navigate(new ServAndPriceDel(this));
+            }
         }
 
         void Close(page page)
@@ -61,7 +66,7 @@ namespace practika
 
         private void Button_Click_1(object sender, RoutedEventArgs e)
         {
-           
+            Open(page.servDel);
         }
 
         private void Image_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)

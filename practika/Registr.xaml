@@ -16,7 +16,7 @@
         <StackPanel Orientation="Horizontal">
             
             <TextBox x:Name="SearchTextBox" 
-                     
+                     Text="{Binding SearchTextBox, UpdateSourceTrigger=PropertyChanged}" 
                      Width="200" 
                      Margin="5" 
                      FontFamily="Comic Sans MS"/>
@@ -58,13 +58,18 @@
         </StackPanel>
 
         <DataGrid x:Name="MyDataGrid" ItemsSource="{Binding Path=MyDataList}" Margin="5" AutoGenerateColumns="False" Background="Transparent">
-            <DataGrid.Resources>
-                <Style TargetType="{x:Type DataGridRow}">
-                    <Setter Property="Margin" Value="0,0,0,5" />
+            <DataGrid.RowStyle>
+                <Style TargetType="DataGridRow">
+                    <Setter Property="Height" Value="50"/>
                 </Style>
-            </DataGrid.Resources>
+            </DataGrid.RowStyle>
+            <DataGrid.CellStyle>
+                <Style TargetType="DataGridCell">
+                    <Setter Property="Padding" Value="10" />
+                </Style>
+            </DataGrid.CellStyle>
             <DataGrid.Columns>
-                <DataGridTextColumn Header="Service" Binding="{Binding Path=service}" FontFamily="Comic Sans MS"/>
+                <DataGridTextColumn Header="Service" Binding="{Binding Path=service}" FontFamily="Comic Sans MS" />
                 <DataGridTextColumn Header="Price" Binding="{Binding Path=price}" FontFamily="Comic Sans MS"/>
             </DataGrid.Columns>
         </DataGrid>
