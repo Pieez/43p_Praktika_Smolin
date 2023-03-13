@@ -99,30 +99,36 @@ namespace practika.ViewModel
         }
         private bool CanExecuteLoginCommand(object obj)
         {
-
+            //Вход в главный
             bool validData;
             if (string.IsNullOrWhiteSpace(Username) || Username.Length < 1 ||
             Password == null || Password.Length < 1)
                 validData = false;
             else
+            {
                 validData = true;
+
+                //Записывает имя компьютера
+                string connectionString = "server=ngknn.ru;Trusted_Connection=No;DataBase=43p_praktika_Smolin;User=33П;PWD=12357";
+                string computerName = Environment.MachineName;
+                string userName = Environment.UserName;
+                using (SqlConnection connection = new SqlConnection(connectionString))
+                {
+                    connection.Open();
+                    string query = "UPDATE Workers " +
+                                   "SET ip = @NewComputerName " +
+                                   "WHERE login=@login";
+                    SqlCommand command = new SqlCommand(query, connection);
+                    command.Parameters.AddWithValue("@NewComputerName", computerName);
+                    command.Parameters.AddWithValue("@OldComputerName", computerName);
+                    command.Parameters.AddWithValue("@login", Username);
+                    int rowsAffected = command.ExecuteNonQuery();
+                }
+
+            }
             return validData;
 
-            string connectionString = "server=ngknn.ru;Trusted_Connection=No;DataBase=43p_praktika_Smolin;User=33П;PWD=12357";
-            string computerName = Environment.MachineName;
-            string userName = Environment.UserName;
-            using (SqlConnection connection = new SqlConnection(connectionString))
-            {
-                connection.Open();
-                string query = "UPDATE Workers " +
-                               "SET ip = @NewComputerName " +
-                               "WHERE login=@login";
-                SqlCommand command = new SqlCommand(query, connection);
-                command.Parameters.AddWithValue("@NewComputerName", userName);
-                command.Parameters.AddWithValue("@OldComputerName", computerName);
-                command.Parameters.AddWithValue("@login", Username);
-                int rowsAffected = command.ExecuteNonQuery();
-            }
+            
 
 
         }
