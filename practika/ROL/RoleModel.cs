@@ -3,12 +3,12 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using System.Net;
-using System.Linq;
-using System.Net.Sockets;
-using System.Data.SqlClient;
 
-namespace practika.ViewModel
+namespace practika.ROL
 {
+    public class RoleModel
+    {
+        
 
+    }
 }

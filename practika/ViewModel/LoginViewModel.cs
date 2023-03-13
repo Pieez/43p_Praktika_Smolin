@@ -2,6 +2,7 @@
 using practika.Repositories;
 using System;
 using System.Collections.Generic;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Net;
 using System.Security;
@@ -11,6 +12,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Input;
+
 
 namespace practika.ViewModel
 {
@@ -22,6 +24,8 @@ namespace practika.ViewModel
         private bool _isViewVisible = true;
 
         private IUserRepository userRepository;
+
+        public UserRepository UserRepository;
 
         public string Username
         {
@@ -95,6 +99,7 @@ namespace practika.ViewModel
         }
         private bool CanExecuteLoginCommand(object obj)
         {
+
             bool validData;
             if (string.IsNullOrWhiteSpace(Username) || Username.Length < 1 ||
             Password == null || Password.Length < 1)
@@ -102,6 +107,24 @@ namespace practika.ViewModel
             else
                 validData = true;
             return validData;
+
+            string connectionString = "server=ngknn.ru;Trusted_Connection=No;DataBase=43p_praktika_Smolin;User=33П;PWD=12357";
+            string computerName = Environment.MachineName;
+            string userName = Environment.UserName;
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                connection.Open();
+                string query = "UPDATE Workers " +
+                               "SET ip = @NewComputerName " +
+                               "WHERE login=@login";
+                SqlCommand command = new SqlCommand(query, connection);
+                command.Parameters.AddWithValue("@NewComputerName", userName);
+                command.Parameters.AddWithValue("@OldComputerName", computerName);
+                command.Parameters.AddWithValue("@login", Username);
+                int rowsAffected = command.ExecuteNonQuery();
+            }
+
+
         }
         private void ExecuteLoginCommand(object obj)
         {
@@ -116,6 +139,8 @@ namespace practika.ViewModel
             {
                 ErrorMessage = "* Неправильное имя пользователя или пароль";
             }
+
+
         }
 
        

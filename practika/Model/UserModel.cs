@@ -16,6 +16,7 @@ namespace practika.Model
         public string ip { get; set; }
         public string lastenter { get; set; }
         public string analysator { get; set; }
+        
 
 
     }

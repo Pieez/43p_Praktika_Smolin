@@ -12,5 +12,6 @@ namespace practika.Model
         public string login { get; set; }
         public string DisplayName { get; set; }
         public byte[] ProfilePicture { get; set; }
+        public string Role { get; set; }
     }
 }

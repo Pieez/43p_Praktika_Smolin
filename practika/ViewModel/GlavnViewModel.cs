@@ -83,14 +83,20 @@ namespace practika.ViewModel
 
         private void ExecuteProductViewCommand(object obj)
         {
-            CurrentChildView = new ProductModel();
-            Caption = "Product";
+            if (_currentUserAccount != null && _currentUserAccount.Role == "admin")
+            {
+                CurrentChildView = new ProductModel();
+                Caption = "Product";
+            }
         }
 
         private void ExecuteShowHomeCommand(object obj)
         {
-            CurrentChildView = new Dash();
-            Caption = "Dashboard";
+           
+                CurrentChildView = new Dash();
+                Caption = "Dashboard";
+            
+            
         }
 
         private void LoadCurrentUserData()
@@ -101,8 +107,9 @@ namespace practika.ViewModel
                 CurrentUserAccount = new UserAccountModel()
                 {
                     login = user.login,
-                    DisplayName = $"{user.name}",
-                    ProfilePicture = null
+                    DisplayName = $"{user.name} {user.analysator}",
+                    ProfilePicture = null,
+                    Role = user.login
                 };
             }
             else

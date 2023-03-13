@@ -96,6 +96,7 @@
     <Compile Include="Results.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
+    <Compile Include="ROL\RoleModel.cs" />
     <Compile Include="ServAndPrice.xaml.cs">
       <DependentUpon>ServAndPrice.xaml</DependentUpon>
     </Compile>
