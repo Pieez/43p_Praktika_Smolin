@@ -33,8 +33,33 @@ namespace practika
 
         }
 
+        private void ComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            string connectionString = "server=ngknn.ru;Trusted_Connection=No;DataBase=43p_praktika_Smolin;User=33П;PWD=12357";
+            SqlConnection connection = new SqlConnection(connectionString);
 
-        
+            string query = "SELECT login, ip FROM Workers";
+            SqlCommand command = new SqlCommand(query, connection);
+
+            connection.Open();
+
+            SqlDataReader reader = command.ExecuteReader();
+
+            myComboBox.DisplayMemberPath = "login";
+            myComboBox.SelectedValuePath = "ip";
+
+            while (reader.Read())
+            {
+                string login = reader.GetString(0);
+                string ip = reader.GetString(1);
+
+                myComboBox.Items.Add(new { login, ip });
+            }
+
+            reader.Close();
+            connection.Close();
+        }
+
 
     }
 }

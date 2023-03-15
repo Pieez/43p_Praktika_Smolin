@@ -8,6 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
+using ZXing;
 
 namespace practika.ViewModel
 {
@@ -73,10 +74,41 @@ namespace practika.ViewModel
             
 
             LoadData();
+
+
+            MyDataList = new List<Registr>();
+            for (int i = 1; i <= 10; i++)
+            {
+                MyDataList.Add(new Registr()
+                {
+                    service = $"Service {i}",
+                    price = i * 100,
+                    Barcode = GenerateRandomBarcode()
+                });
+            }
+
+
         }
 
+        private string GenerateRandomBarcode()
+        {
+            Random random = new Random();
+            string barcode = "";
+            for (int i = 0; i < 12; i++)
+            {
+                int digit = random.Next(0, 10);
+                barcode += digit.ToString();
+            }
 
-       
+            var writer = new BarcodeWriterSvg
+            {
+                Format = BarcodeFormat.EAN_13
+            };
+
+            var svg = writer.Write(barcode);
+            return barcode;
+        }
+
 
         private void LoadData()
         {

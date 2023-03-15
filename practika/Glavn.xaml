@@ -100,9 +100,9 @@
                     BorderBrush="Transparent"
                     
                     >
-                
-                
-                
+
+
+
 
                 <Border.Background>
                     <LinearGradientBrush StartPoint="0,0" EndPoint="1,1.07">
@@ -242,8 +242,8 @@
                                        FontFamily="Comic Sans MS"
                                        VerticalAlignment="Center"/>
 
-                            
-                           
+
+
                             <Ellipse Height="35" Width="35"
                                      Stroke="{StaticResource color2}"
                                      StrokeThickness="2"
@@ -264,12 +264,14 @@
                                     Grid.Row="2"
                                     Margin="25"/>
 
+                    
+
 
 
                 </Grid>
 
-                
-                
+
+
             </Border>
 
         </Grid>

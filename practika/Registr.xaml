@@ -71,9 +71,18 @@
             <DataGrid.Columns>
                 <DataGridTextColumn Header="Service" Binding="{Binding Path=service}" FontFamily="Comic Sans MS" />
                 <DataGridTextColumn Header="Price" Binding="{Binding Path=price}" FontFamily="Comic Sans MS"/>
+                <DataGridTemplateColumn Header="Barcode">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <Image Source="{Binding Path=BarcodeImage}" Width="100" Height="50"/>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
             </DataGrid.Columns>
         </DataGrid>
-       
+
+        <ComboBox x:Name="myComboBox" SelectionChanged="ComboBox_SelectionChanged" DisplayMemberPath="login" Grid.Row="2" Margin="450,0,10,10" VerticalAlignment="Bottom" Height="27" />
+
     </StackPanel>
 
 
