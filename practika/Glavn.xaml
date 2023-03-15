@@ -75,7 +75,8 @@
 
                     <RadioButton Style="{StaticResource menuButton}"
                                  Tag="{StaticResource color1}"
-                                 Command="{Binding ShowHomeViewCommand}">
+                                 Command="{Binding ShowHomeViewCommand}"
+                                 >
                         <StackPanel Orientation="Horizontal">
                             <Image Source="/Image/EyeClosed.png" Width="40" Height="40" Margin="10,0,0,0"></Image>
                             <TextBlock Text="Dashboard" FontFamily="Comic Sans MS" FontSize="16" Margin="10"></TextBlock>
@@ -84,7 +85,8 @@
 
                     <RadioButton Style="{StaticResource menuButton}"
                                  Tag="{StaticResource color2}"
-                                 Command="{Binding ShowProductViewCommand}">
+                                 Command="{Binding ShowProductViewCommand}"
+                                 x:Name="productButton">
                         <StackPanel Orientation="Horizontal">
                             <Image Source="/Image/EyeOpened.png" Width="40" Height="40" Margin="10,0,0,0"></Image>
                             <TextBlock Text="Product" FontFamily="Comic Sans MS" FontSize="16" Margin="10"></TextBlock>

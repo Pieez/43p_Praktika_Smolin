@@ -3,9 +3,11 @@ using practika.Repositories;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Cryptography.X509Certificates;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
+using System.Windows;
 using System.Windows.Input;
 
 namespace practika.ViewModel
@@ -83,13 +85,19 @@ namespace practika.ViewModel
 
         private void ExecuteProductViewCommand(object obj)
         {
-            if (_currentUserAccount != null && _currentUserAccount.Role == "admin")
+            Glavn glavn = new Glavn();
+
+            if (_currentUserAccount != null && (_currentUserAccount.Role == "admin" || _currentUserAccount.Role == "lab"))
             {
                 CurrentChildView = new ProductModel();
                 Caption = "Product";
+                glavn.productButton.Visibility = Visibility.Visible;
+            }
+            else
+            {
+                glavn.productButton.Visibility = Visibility.Collapsed;
             }
         }
-
         private void ExecuteShowHomeCommand(object obj)
         {
            
