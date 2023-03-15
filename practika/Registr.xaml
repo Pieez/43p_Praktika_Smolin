@@ -57,7 +57,7 @@
             <Button Content="4" Command="{Binding Path=GoToPage4Command}" Margin="5"  Background="Transparent" BorderBrush="{x:Null}" FontFamily="Comic Sans MS"/>
         </StackPanel>
 
-        <DataGrid x:Name="MyDataGrid" ItemsSource="{Binding Path=MyDataList}" Margin="5" AutoGenerateColumns="False" Background="Transparent">
+        <DataGrid x:Name="MyDataGrid" ItemsSource="{Binding Path=MyDataList}" Margin="5" AutoGenerateColumns="False" Background="Transparent"><!---->
             <DataGrid.RowStyle>
                 <Style TargetType="DataGridRow">
                     <Setter Property="Height" Value="50"/>
