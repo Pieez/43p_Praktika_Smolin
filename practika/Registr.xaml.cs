@@ -18,6 +18,11 @@ using System.Data.SqlClient;
 using static System.Net.Mime.MediaTypeNames;
 using System.Net.NetworkInformation;
 using practika.ViewModel;
+using System.Drawing;
+using ZXing.Common;
+using ZXing;
+using System.Runtime.InteropServices;
+using System.Windows.Interop;
 
 namespace practika
 {
@@ -29,9 +34,38 @@ namespace practika
         public Registr()
         {
             InitializeComponent();
+           
  
 
         }
+
+
+        private BitmapSource GenerateBarcode(string text)
+        {
+            BarcodeWriter barcodeWriter = new BarcodeWriter
+            {
+                Format = BarcodeFormat.CODE_128
+            };
+            var barcodeBitmap = barcodeWriter.Write(text);
+            return BitmapToBitmapSource(barcodeBitmap);
+        }
+
+        private BitmapSource BitmapToBitmapSource(Bitmap bitmap)
+        {
+            var handle = bitmap.GetHbitmap();
+            try
+            {
+                return Imaging.CreateBitmapSourceFromHBitmap(handle, IntPtr.Zero, Int32Rect.Empty, BitmapSizeOptions.FromEmptyOptions());
+            }
+            finally
+            {
+                DeleteObject(handle);
+            }
+        }
+
+        [DllImport("gdi32.dll")]
+        [return: MarshalAs(UnmanagedType.Bool)]
+        internal static extern bool DeleteObject(IntPtr hObject);
 
         private void ComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {

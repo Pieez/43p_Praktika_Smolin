@@ -4,11 +4,18 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Data.SqlClient;
+using System.Drawing;
 using System.Linq;
+using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 using System.Windows.Input;
+using System.Windows.Interop;
+using System.Windows.Media.Imaging;
+using System.Windows.Media;
 using ZXing;
+using ZXing.QrCode.Internal;
 
 namespace practika.ViewModel
 {
@@ -18,15 +25,49 @@ namespace practika.ViewModel
         private List<Registr> _myDataList;
         private List<Registr> _filteredDataList;
         private int _currentPage = 1;
+        private string service;
         private const int PageSize = 10;
 
         public event PropertyChangedEventHandler PropertyChanged;
 
 
-        
 
-      
-       
+        public ImageSource BarcodeImage
+        {
+            get
+            {
+                return GenerateBarcode(service);
+            }
+        }
+
+        private BitmapSource GenerateBarcode(string text)
+        {
+            BarcodeWriter barcodeWriter = new BarcodeWriter
+            {
+                Format = BarcodeFormat.CODE_128
+            };
+            var barcodeBitmap = barcodeWriter.Write(text);
+            return BitmapToBitmapSource(barcodeBitmap);
+        }
+
+        private BitmapSource BitmapToBitmapSource(Bitmap bitmap)
+        {
+            var handle = bitmap.GetHbitmap();
+            try
+            {
+                return Imaging.CreateBitmapSourceFromHBitmap(handle, IntPtr.Zero, Int32Rect.Empty, BitmapSizeOptions.FromEmptyOptions());
+            }
+            finally
+            {
+                DeleteObject(handle);
+            }
+        }
+
+        [DllImport("gdi32.dll")]
+        [return: MarshalAs(UnmanagedType.Bool)]
+        internal static extern bool DeleteObject(IntPtr hObject);
+
+
         public string SearchTextBox
         {
             get { return _searchText; }
@@ -76,45 +117,19 @@ namespace practika.ViewModel
             LoadData();
 
 
-            MyDataList = new List<Registr>();
-            for (int i = 1; i <= 10; i++)
-            {
-                MyDataList.Add(new Registr()
-                {
-                    service = $"Service {i}",
-                    price = i * 100,
-                    Barcode = GenerateRandomBarcode()
-                });
-            }
+           
 
 
         }
 
-        private string GenerateRandomBarcode()
-        {
-            Random random = new Random();
-            string barcode = "";
-            for (int i = 0; i < 12; i++)
-            {
-                int digit = random.Next(0, 10);
-                barcode += digit.ToString();
-            }
-
-            var writer = new BarcodeWriterSvg
-            {
-                Format = BarcodeFormat.EAN_13
-            };
-
-            var svg = writer.Write(barcode);
-            return barcode;
-        }
+      
 
 
         private void LoadData()
         {
             // Подключения в DataGrid
             string connectionString = "server=ngknn.ru;Trusted_Connection=No;DataBase=43p_praktika_Smolin;User=33П;PWD=12357";
-            string sql = "SELECT service, price FROM Service";
+            string sql = "SELECT service, price, Barcode FROM Service";
             MyDataList = new List<Registr>();
 
             using (SqlConnection connection = new SqlConnection(connectionString))
@@ -122,14 +137,21 @@ namespace practika.ViewModel
                 SqlCommand command = new SqlCommand(sql, connection);
                 connection.Open();
                 SqlDataReader reader = command.ExecuteReader();
+                
+               
 
                 while (reader.Read())
                 {
-                    MyDataList.Add(new Registr
+                    Registr registr = new Registr
                     {
                         service = reader.GetString(0),
-                        price = Convert.ToDecimal(reader.GetValue(1))
-                    });
+                        price = Convert.ToDecimal(reader.GetValue(1)),
+                    };
+                    if (!reader.IsDBNull(2))
+                    {
+                        registr.Barcode = reader.GetString(2);
+                    }
+                    MyDataList.Add(registr);
                 }
 
                 reader.Close();
@@ -230,10 +252,7 @@ namespace practika.ViewModel
         private void ExecuteGoToPage3Command(object obj)
         {
 
-            if (MyDataList.Count < PageSize * 3)
-            {
-                return; // если список пустой или не содержит нужного количества элементов, то выход из метода без изменения _currentPage
-            }
+            
             _currentPage = 3;
             UpdatePagedData();
             

@@ -4,12 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace practika.Model
+namespace practika.ViewModel
 {
-    public class UserAdd
+    public class ShtrihCode
     {
-        public string service { get; set; }
-        public decimal price { get; set; }
 
     }
 }

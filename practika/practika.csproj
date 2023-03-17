@@ -126,6 +126,7 @@
     <Compile Include="ViewModel\Net.cs" />
     <Compile Include="ViewModel\ProductModel.cs" />
     <Compile Include="ViewModel\Registr.cs" />
+    <Compile Include="ViewModel\ShtrihCode.cs" />
     <Compile Include="ViewModel\ViewModelBase.cs" />
     <Compile Include="ViewModel\ViewModelCommand.cs" />
     <Compile Include="Workers.cs">
