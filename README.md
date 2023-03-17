@@ -43,8 +43,26 @@
 
 ![image](https://user-images.githubusercontent.com/104516380/224056570-09566a56-47ff-49bd-8245-0a31304f56cf.png)
 
+Поиск
+
+![image](https://user-images.githubusercontent.com/104516380/225902943-eaafb751-e168-432a-b69f-aab33cdf09e4.png)
+
+Сортировка "Service" по алфавитам
+
+![image](https://user-images.githubusercontent.com/104516380/225903147-f9536ed4-cab7-4f21-9d52-4408d147da8b.png)
+
+Сортировка "Price" 
+
+![image](https://user-images.githubusercontent.com/104516380/225903374-57d314a8-431d-4f98-85da-d87b150909ba.png)
+
+Фильтрация дешевле 300(>300)
+
+![image](https://user-images.githubusercontent.com/104516380/225903640-4c72416b-d662-4f4c-9551-3b27c8c9bb5c.png)
+
+
 ### 2 Окно 
 Добавлени и удаление из БД SQL Server
 
 ![image](https://user-images.githubusercontent.com/104516380/224057198-d6e5e39d-49de-4db6-bf4c-2911285be157.png)
+
 
