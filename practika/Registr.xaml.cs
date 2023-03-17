@@ -29,37 +29,51 @@ namespace practika
         public Registr()
         {
             InitializeComponent();
- 
 
+
+        }
+
+
+        private string _username;
+        public string Username
+        {
+            get
+            {
+                return _username;
+            }
+            set
+            {
+                _username = value;
+                OnPropertyChanged(nameof(Username));
+            }
+        }
+
+        private DependencyPropertyChangedEventArgs nameof(string username)
+        {
+            throw new NotImplementedException();
         }
 
         private void ComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            string connectionString = "server=ngknn.ru;Trusted_Connection=No;DataBase=43p_praktika_Smolin;User=33П;PWD=12357";
-            SqlConnection connection = new SqlConnection(connectionString);
-
-            string query = "SELECT login, ip FROM Workers";
-            SqlCommand command = new SqlCommand(query, connection);
-
-            connection.Open();
-
-            SqlDataReader reader = command.ExecuteReader();
-
-            myComboBox.DisplayMemberPath = "login";
-            myComboBox.SelectedValuePath = "ip";
-
-            while (reader.Read())
-            {
-                string login = reader.GetString(0);
-                string ip = reader.GetString(1);
-
-                myComboBox.Items.Add(new { login, ip });
-            }
-
-            reader.Close();
-            connection.Close();
+           
         }
 
-
+        private void myComboBox_Loaded(object sender, RoutedEventArgs e)
+        {
+            string connectionString = "server=ngknn.ru;Trusted_Connection=No;DataBase=43p_praktika_Smolin;User=33П;PWD=12357";
+            string query = "SELECT DISTINCT login FROM HistoryLogin";
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                SqlCommand command = new SqlCommand(query, connection);
+                connection.Open();
+                SqlDataReader reader = command.ExecuteReader();
+                while (reader.Read())
+                {
+                    string login = reader["login"].ToString();
+                    myComboBox.Items.Add(login);
+                    MessageBox.Show("Добавлено значение в ComboBox: " + login);
+                }
+            }
+        }
     }
 }

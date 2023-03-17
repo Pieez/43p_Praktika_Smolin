@@ -57,6 +57,9 @@
             <Button Content="4" Command="{Binding Path=GoToPage4Command}" Margin="5"  Background="Transparent" BorderBrush="{x:Null}" FontFamily="Comic Sans MS"/>
         </StackPanel>
 
+        <ComboBox x:Name="myComboBox" SelectionChanged="ComboBox_SelectionChanged" DisplayMemberPath="login" Grid.Row="2" Margin="450,0,10,10" VerticalAlignment="Bottom" Height="27" Loaded="myComboBox_Loaded" Foreground="Black" IsEditable="True" IsReadOnly="True" />
+
+
         <DataGrid x:Name="MyDataGrid" ItemsSource="{Binding Path=MyDataList}" Margin="5" AutoGenerateColumns="False" Background="Transparent"><!---->
             <DataGrid.RowStyle>
                 <Style TargetType="DataGridRow">
@@ -81,8 +84,7 @@
             </DataGrid.Columns>
         </DataGrid>
 
-        <ComboBox x:Name="myComboBox" SelectionChanged="ComboBox_SelectionChanged" DisplayMemberPath="login" Grid.Row="2" Margin="450,0,10,10" VerticalAlignment="Bottom" Height="27" />
-
+        
     </StackPanel>
 
 

@@ -108,9 +108,25 @@ namespace practika.ViewModel
             {
                 validData = true;
 
-                //Записывает имя компьютера
                 string connectionString = "server=ngknn.ru;Trusted_Connection=No;DataBase=43p_praktika_Smolin;User=33П;PWD=12357";
                 string computerName = Environment.MachineName;
+
+                //записывает истории входа
+                using (SqlConnection connection = new SqlConnection(connectionString))
+                {
+                    connection.Open();
+                    string query = "INSERT INTO HistoryLogin (login, ip,date) VALUES ( @Username, @NewComputerName,@LoginTime)";
+                    SqlCommand command = new SqlCommand(query, connection);
+                    command.Parameters.AddWithValue("@Username", Username);
+                    command.Parameters.AddWithValue("@LoginTime", DateTime.Now);
+                    command.Parameters.AddWithValue("@NewComputerName", computerName);
+                    int rowsAffected = command.ExecuteNonQuery();
+                }
+
+
+                //Записывает имя компьютера
+                
+                
                 string userName = Environment.UserName;
                 using (SqlConnection connection = new SqlConnection(connectionString))
                 {
