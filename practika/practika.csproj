@@ -244,6 +244,7 @@
     <Resource Include="Image\Interface.png" />
     <Resource Include="Image\NUser.png" />
     <Resource Include="Image\back.png" />
+    <Resource Include="Image\phone.jpg" />
     <Content Include="Model1.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>Model1.Context.cs</LastGenOutput>
